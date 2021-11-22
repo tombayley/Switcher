@@ -63,9 +63,9 @@ class SwitcherX @JvmOverloads constructor(
             if (field != value) {
                 field = value
 
-                val iconOffset = lerp(0f, iconRadius - iconCollapsedWidth / 2, value)
-                iconRect.left = width - switcherCornerRadius - iconCollapsedWidth / 2 - iconOffset
-                iconRect.right = width - switcherCornerRadius + iconCollapsedWidth / 2 + iconOffset
+                val iconOffset = lerp(0f, iconRadius, value)
+                iconRect.left = width - switcherCornerRadius - iconRadius + iconOffset
+                iconRect.right = width - switcherCornerRadius + iconRadius + iconOffset
 
                 val clipOffset = lerp(0f, iconClipRadius, value)
                 iconClipRect.set(
@@ -116,22 +116,21 @@ class SwitcherX @JvmOverloads constructor(
 
         iconRadius = switcherCornerRadius * 0.6f
         iconClipRadius = iconRadius / 2.25f
-        iconCollapsedWidth = iconRadius - iconClipRadius
 
         iconHeight = iconRadius * 2f
 
         iconRect.set(
-            width - switcherCornerRadius - iconCollapsedWidth / 2,
+            width - switcherCornerRadius - iconRadius,
             ((height - iconHeight) / 2f) - shadowOffset / 2,
-            width - switcherCornerRadius + iconCollapsedWidth / 2,
+            width - switcherCornerRadius +iconRadius,
             (height - (height - iconHeight) / 2f) - shadowOffset / 2
         )
 
         if (!isChecked) {
             iconRect.left =
-                width - switcherCornerRadius - iconCollapsedWidth / 2 - (iconRadius - iconCollapsedWidth / 2)
+                width - switcherCornerRadius
             iconRect.right =
-                width - switcherCornerRadius + iconCollapsedWidth / 2 + (iconRadius - iconCollapsedWidth / 2)
+                width - switcherCornerRadius + iconRadius*2
 
             iconClipRect.set(
                 iconRect.centerX() - iconClipRadius,
@@ -140,7 +139,7 @@ class SwitcherX @JvmOverloads constructor(
                 iconRect.centerY() + iconClipRadius
             )
 
-            iconTranslateX = -(width - shadowOffset - switcherCornerRadius * 2)
+            iconTranslateX = -(width - shadowOffset - switcherCornerRadius * 2 + iconRadius)
         }
 
         if (!isLollipopOrAbove()) generateShadow()
@@ -208,7 +207,7 @@ class SwitcherX @JvmOverloads constructor(
         var amplitude = BOUNCE_ANIM_AMPLITUDE_IN
         var frequency = BOUNCE_ANIM_FREQUENCY_IN
         var iconTranslateA = 0f
-        var iconTranslateB = -(width - shadowOffset - switcherCornerRadius * 2)
+        var iconTranslateB = -(width - shadowOffset - switcherCornerRadius * 2 + iconRadius)
         var newProgress = 1f
 
         if (isChecked) {
