@@ -8,3 +8,13 @@ plugins {
 dependencies {
     implementation(library.coreKtx)
 }
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                from(components["release"])
+            }
+        }
+    }
+}
