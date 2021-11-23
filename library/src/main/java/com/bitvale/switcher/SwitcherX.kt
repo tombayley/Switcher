@@ -36,7 +36,7 @@ import com.bitvale.switcher.common.lerp
  * Created by Alexander Kolpakov (jquickapp@gmail.com) on 11-Jul-18
  * https://github.com/bitvale
  */
-class SwitcherX @JvmOverloads constructor(
+open class SwitcherX @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
