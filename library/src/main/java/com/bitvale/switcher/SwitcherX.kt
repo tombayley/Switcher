@@ -171,7 +171,7 @@ open class SwitcherX @JvmOverloads constructor(
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         // shadow
         if (!isLollipopOrAbove() && switchElevation > 0f && !isInEditMode) {
             canvas?.drawBitmap(shadow as Bitmap, 0f, shadowOffset, null)
